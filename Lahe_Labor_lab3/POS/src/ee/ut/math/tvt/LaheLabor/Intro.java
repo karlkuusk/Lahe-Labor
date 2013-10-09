@@ -17,7 +17,7 @@ public class Intro {
 		    JLabel label1 = new JLabel("Lahe Labor"); //
 		    JLabel label2 = new JLabel("Rene Roost"); //
 		    JLabel label3 = new JLabel("roost.rene@gmail.com"); //
-		    JLabel label4 = new JLabel("Lisbet, Jonatan, Karl, Rene"); //
+		    JLabel label4 = new JLabel("Liisbet Jürlau, Karl Kuusk, Jonatan Raudsepp,  Rene Roost"); //
 		    
 		    JLabel label5= new JLabel("1.0.0"); //
 
