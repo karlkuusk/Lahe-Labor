@@ -20,7 +20,7 @@ public class IntroUI extends JFrame {
 	    JLabel label1 = new JLabel("Lahe Labor"); 
 	    JLabel label2 = new JLabel("Rene Roost"); 
 	    JLabel label3 = new JLabel("roost.rene@gmail.com"); 
-	    JLabel label4 = new JLabel("Team members: Liisbet Jyrlau, Jonatan Raudsepp, Karl Kuusk, Rene Roost"); 
+	    JLabel label4 = new JLabel("Team members: Liisbet Jyyyyyyrlau, Jonatan Raudsepp, Karl Kuusk, Rene Roost"); 
 	    JLabel label5= new JLabel("1.0.0"); 
 
 	    content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -29,6 +29,7 @@ public class IntroUI extends JFrame {
 	    content.add(label3);
 	    content.add(label4);
 	    content.add(label5);
-	    this.setVisible(true); 
+	    this.setVisible(true);
+	    
 	 }
 }
