@@ -15,38 +15,41 @@ public class IntroUI extends JFrame {
 	private BufferedReader br;
 	
 	IntroUI(){
-	 
-	    this.setSize(434, 500); 
-	    this.setLocation(100, 100);
-	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-	    JLabel content=new JLabel(new ImageIcon(getClass().getResource("/lahelabor.jpg")));
-	    
-	    content.setLayout(new FlowLayout());
-	    
-	    GridBagConstraints c = new GridBagConstraints();
-
-	    
-	    add(content);
-
-		
 		readBuildNumber();
+	    this.setSize(800, 500); 
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.getContentPane().setBackground(Color.WHITE);
+	    JLabel content=new JLabel(new ImageIcon(getClass().getResource("/lahelabor.jpg")));
+	    this.setLayout(new FlowLayout());
+	    content.setLayout(new FlowLayout());
+	  
+	    JPanel panel=new JPanel();
+	    panel.setLayout(new GridLayout(4,0));
+	    panel.setBackground(Color.WHITE);
 		
 	    JLabel label1 = new JLabel("Lahe Labor"); 
-	    JLabel label2 = new JLabel("Rene Roost"); 
-	    JLabel label3 = new JLabel("roost.rene@gmail.com"); 
-	    JLabel label4 = new JLabel("Team members: Liisbet Jyrlau, Jonatan Raudsepp, Karl Kuusk, Rene Roost"); 
-	    JLabel label5= new JLabel(build_number); 
-
-	    content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-	    content.add(label1);
-	    content.add(label2);
-	    content.add(label3);
-	    content.add(label4);
-	    content.add(label5);
-	
-		try {
+	    label1.setFont(new Font("Arial", Font.PLAIN, 24));
+	    JLabel label2 = new JLabel("<html>Team leader: Rene Roost<br>mail: rene.roost@gmail.com</html>");
+	    JLabel label3 = new JLabel("<html>Team members:<br> Liisbet Jyrlau<br> Jonatan Raudsepp<br> Karl Kuusk<br> Rene Roost"); 
+	    JLabel label4= new JLabel("build number: "+build_number); 
+	    
+	    panel.setSize(300,300);
+	    
+	   
+	    panel.add(label1);
+	    panel.add(label2);
+	    panel.add(label3);
+	    panel.add(label4);
+	    
+	    this.add(panel);
+	    this.add(content);
+	    
+	    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+	    int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+	    this.setLocation(x, y);
+	    
+	    try {
 	        UIManager.setLookAndFeel(new WindowsLookAndFeel());
 
 	    } catch (UnsupportedLookAndFeelException e1) {
