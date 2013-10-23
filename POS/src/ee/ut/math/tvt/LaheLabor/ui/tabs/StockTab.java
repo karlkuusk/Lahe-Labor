@@ -71,7 +71,7 @@ public class StockTab {
   // table of the wareshouse stock
   private Component drawStockMainPane() {
     JPanel panel = new JPanel();
-
+//liisbeti oma
     JTable table = new JTable(model.getWarehouseTableModel());
 
     JTableHeader header = table.getTableHeader();

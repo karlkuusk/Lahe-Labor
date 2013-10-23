@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+	<property file="application.properties"/>
+	<property file="${version.properties.file.dir}"/>
+	
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<path id="run.classpath">
+		<pathelement location="${build.classes.dir}"/>
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+		<pathelement location="${data.dir}"/>
+		<pathelement location="${base.dir}"/>
+		<pathelement location="${log4j.dir}"/>
+	</path>
+
+	<!-- Definitions of runnable ant targets.
+         Run them from the command line by executing "ant [targetname]"  -->
+
+	<target name="run" depends="build" description="Run the template application">
+		<java classname="${main.method.class.dir}" classpathref="run.classpath" fork="yes" />
+	</target>
+
+	<target name="build" description="Build the system">
+		
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes.dir}"/>
+		<javac
+            srcdir="${src.dir}"
+            destdir="${build.classes.dir}"
+            debug="${debug}"
+            debuglevel="${debuglevel}"
+            encoding="${encoding}"
+            compiler="${compiler}"
+            target="${target}"
+            source="${source}"
+			includeantruntime="${includeatruntime}">
+			<classpath refid="compile.classpath"/>
+		</javac>
+		<antcall target="update or create log4j properties file"/>
+	</target>
+
+	<target name="clean" description="Clean up build system results">
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<target name="jrun" depends="dist" description="Runs jar">
+		<java jar="${dist.file.dir}-${build.number}.jar" fork="true"/>
+	</target>
+	
+	<target name="dist" depends="build" description="Creater a jar file into build/jar/">
+		
+		<mkdir dir="${dist.dir}"/>
+		<jar destfile="${dist.file.dir}-${build.number}.jar">
+			<fileset dir="${build.classes.dir}"/>
+			<fileset dir="${data.dir}"/>
+			<fileset file="${log4j.properties.file.dir}"/>
+			<fileset file="${application.properties.file.dir}"/>
+			<fileset file="${version.properties.file.dir}"/>
+			
+			<zipgroupfileset dir="${lib.dir}" includes="*.jar" 
+				excludes="*.properties"
+			/>
+			
+			<manifest>
+				<attribute name="Main-Class" value="${main.method.class.dir}"/>
+			</manifest>
+		</jar>
+		<antcall target="update build.number"/>
+	</target>
+		
+	
+	<target name="update build.number">
+			
+		<scriptdef name="increment" language="javascript">
+			<attribute name="init_build_revision_number" />
+			<attribute name="init_build_minor_number" />
+			<attribute name="init_build_major_number" />
+			<attribute name="final_build_revision_number" />
+			<attribute name="final_build_minor_number" />
+			<attribute name="final_build_major_number" />
+			<![CDATA[
+				var init_build_revision_number=parseInt(attributes.get("init_build_revision_number"),10)+1;
+				var init_build_minor_number=parseInt(attributes.get("init_build_minor_number"),10);
+				var init_build_major_number=parseInt(attributes.get("init_build_major_number"),10);
+				
+				if(init_build_revision_number>999){
+					init_build_revision_number=0;
+					init_build_minor_number+=1;
+				}
+				if(init_build_minor_number>999){
+					init_build_minor_number=0;
+					init_build_major_number+=1;
+				}
+								
+				project.setProperty(attributes.get("final_build_revision_number"),init_build_revision_number);
+				project.setProperty(attributes.get("final_build_minor_number"),init_build_minor_number);
+				project.setProperty(attributes.get("final_build_major_number"),init_build_major_number);
+			]]>
+		</scriptdef>
+
+		<increment init_build_revision_number="${build.revision.number}" init_build_minor_number="${build.minor.number}" init_build_major_number="${build.major.number}"
+					final_build_revision_number="final_build_revision_number"	final_build_minor_number="final_build_minor_number"	final_build_major_number="final_build_major_number"
+					/>
+
+		<propertyfile file="${version.properties.file.dir}">
+			<entry key="build.revision.number" value="${final_build_revision_number}"/>
+			<entry key="build.minor.number" value="${final_build_minor_number}"/>
+			<entry key="build.major.number" value="${final_build_major_number}"/>
+			<entry key="build.number" value="${final_build_major_number}.${final_build_minor_number}.${final_build_revision_number}" />
+		</propertyfile>
+	</target>
+	
+	<target name="update or create log4j properties file">
+		<mkdir dir="${log4j.dir}"/>
+		<propertyfile file="${log4j.properties.file.dir}">
+			<entry key="log4j.rootLogger" value="${log4j.level},FILE"/>
+			<entry key="log4j.appender.FILE" value="${log4j.appender}"/>
+			<entry key="log4j.appender.FILE.File" value="${log4j.file.name}"/>
+			<entry key="log4j.appender.FILE.layout" value="${log4j.layout}"/>
+			<entry key="log4j.appender.FILE.layout.conversionPattern" value="${log4j.layout.conversionPattern}"/>
+		</propertyfile>
+	</target>
+	
+</project>
+
