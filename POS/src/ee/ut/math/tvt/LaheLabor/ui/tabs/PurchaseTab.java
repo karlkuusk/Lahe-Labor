@@ -1,18 +1,23 @@
 package ee.ut.math.tvt.LaheLabor.ui.tabs;
 
+import ee.ut.math.tvt.LaheLabor.domain.data.ConfirmPurchase;
 import ee.ut.math.tvt.LaheLabor.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.LaheLabor.ui.panels.PurchaseItemPanel;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -167,6 +172,12 @@ public class PurchaseTab {
   protected void submitPurchaseButtonClicked() {
     log.info("Sale complete");
     try {
+    	
+    	ConfirmPurchase confirm = new ConfirmPurchase(purchasePane, SIIA_VAJA_OSTUSUMMAT); // <---<---<--- SIIA TARVIS OSTU SUMMAT
+    	confirm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	confirm.setVisible(true);
+    	
+    	
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
