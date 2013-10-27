@@ -71,5 +71,12 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 
 		return buffer.toString();
 	}
+	 public StockItem getItemByName(final String name) {
+	        for (final StockItem item : rows) {
+	            if (item.getName() == name)
+	                return item;
+	        }
+	        throw new NoSuchElementException();
+	 }
 
 }

@@ -14,6 +14,8 @@ public class StockItem implements Cloneable, DisplayableItem {
     private String description;
     
     private int quantity;
+    
+    private int temporaryQuantity;
 
     /**
      * Constucts new <code>StockItem</code> with the specified values.
@@ -83,7 +85,15 @@ public class StockItem implements Cloneable, DisplayableItem {
         this.quantity = quantity;
     }
 
-    public String toString() {
+    public int getTemporaryQuantity() {
+		return temporaryQuantity;
+	}
+
+	public void setTemporaryQuantity(int temporaryQuantity) {
+		this.temporaryQuantity = temporaryQuantity;
+	}
+
+	public String toString() {
         return id + " " + name + " " + description + " " + price;
     }
 

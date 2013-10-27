@@ -8,17 +8,17 @@ package ee.ut.math.tvt.LaheLabor.domain.data;
 public class SoldItem implements Cloneable, DisplayableItem {
 
     private Long id;
-    private StockItem stockItem;
-    
+    private StockItem stockItem;    
     private String name;
     private Integer quantity;
     private double price;
+    private double sum;
     
     public SoldItem(StockItem stockItem, int quantity) {
         this.stockItem = stockItem;
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
-        this.quantity = quantity;
+        this.quantity = quantity;       
         
     }
     
@@ -66,5 +66,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
     public void setStockItem(StockItem stockItem) {
         this.stockItem = stockItem;
     }
-    
+
 }
+    
+
