@@ -171,7 +171,7 @@
 		<property name="commit.password" value=""/>
 	</target>	
 		
-	<target name="-git.check.userinfo">
+	<target name="-check.git.properties.file" >
 		<propertyfile file="${git.properties.file.dir}">
 			<entry key="git.username" default=""/>
 			<entry key="git.email" default=""/>
@@ -186,10 +186,12 @@
 		<condition property="ask.git.password.condition">
 			<equals arg1="${git.password}" arg2=""/>
 		</condition>
-		<antcall target="-ask.git.username"/>
-		<antcall target="-ask.git.email"/>
-		<antcall target="-ask.git.password"/>
-		<antcall target="-git.save.password"/>
+	</target>
+		
+	<target name="-git.check.userinfo" depends="-check.git.properties.file,-ask.git.username,-ask.git.email,-ask.git.password,-git.save.password">
+		<property name="git.username.var" value="${git.username}"/>
+		<property name="git.email.var" value="${git.email}"/>
+		<property name="git.password.var" value="${git.password}"/>
 	</target>
 	
 	<target name="-ask.git.username" if="ask.git.username.condition">
@@ -200,12 +202,13 @@
 		<propertyfile file="${git.properties.file.dir}">
 			<entry key="git.username" value="${git.updated.username}"/>
 		</propertyfile>
-		<var name="git.username.var" value="${git.updated.username}"/>
+		
+		<property name="git.username.var" value="${git.updated.username}"/>
 		<exec executable="git">
 			<arg value="config"/>
 			<arg value="--global"/>
 			<arg value="user.name"/>
-			<arg value="${git.username}"/>
+			<arg value="${git.updated.username}"/>
 		</exec>
 	</target>
 	
@@ -217,12 +220,12 @@
 		<propertyfile file="${git.properties.file.dir}">
 			<entry key="git.email" value="${git.updated.email}"/>
 		</propertyfile>
-		<var name="git.email.var" value="${git.updated.email}"/>
+		<property name="git.email.var" value="${git.updated.email}"/>
 		<exec executable="git">
 			<arg value="config"/>
 			<arg value="--global"/>
 			<arg value="user.email"/>
-			<arg value="${git.email}"/>
+			<arg value="${git.updated.email}"/>
 		</exec>
 	</target>	
 	
@@ -245,6 +248,7 @@
 			message="Please enter your password"
 			addproperty="git.updated.password"
 		/>
+		<property name="git.password.var" value="${git.updated.password}"/>
 		<input 
 			message="Do you want to save your password in clear text (y/n)?"
 			validargs="y,n"
@@ -261,14 +265,22 @@
 		</propertyfile>
 	</target>
 	
-	<target name="git_commit">
-		<antcall target="-git.check.userinfo"/>
+	<target name="-git.update.userinfo" unless="git.information.correct.condition" >
+		<propertyfile file="${git.properties.file.dir}">
+			<entry key="git.username" value=""/>
+			<entry key="git.email" value=""/>
+			<entry key="git.password" value=""/>
+		</propertyfile>
+	</target>	
+	
+	<target name="git_commit" depends="-git.check.userinfo">
+	
 		<echo message="Found information: "/>
-		<echo message="Username: ${git.username.var}"/>
-		<echo message="Email: ${git.username.var}"/>
+		<echo>Username: ${git.username.var}</echo>
+		<echo>Email: ${git.email.var}</echo>
 		
 		<input
-			message="Is information correct (y/n)?"
+			message="Is information correct?"
 			validargs="y,n"
 			addproperty="git.information.correct"
 		/>
@@ -276,6 +288,7 @@
 			<equals arg1="y" arg2="${git.information.correct}"/>
 		</condition>
 		<antcall target="-git" />
+		<antcall target="-git.update.userinfo" />
 	</target>
 
 </project>
