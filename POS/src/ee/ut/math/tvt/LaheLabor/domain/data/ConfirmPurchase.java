@@ -88,7 +88,7 @@ public class ConfirmPurchase extends JDialog{
 	
 	protected void acceptButtonClicked() {
 		dispose();
-//		purchaseItemPanel.uuendaLaoseisu();
+		purchaseItemPanel.updateWarehouse();
 	}
 	
 	protected void EPAButtonClicked() {

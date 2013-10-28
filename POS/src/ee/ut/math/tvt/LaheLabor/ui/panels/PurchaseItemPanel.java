@@ -1,7 +1,9 @@
 package ee.ut.math.tvt.LaheLabor.ui.panels;
 
 import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
+import ee.ut.math.tvt.LaheLabor.domain.data.SoldItemsArray;
 import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
+import ee.ut.math.tvt.LaheLabor.domain.data.ConfirmPurchase;
 import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
 
 import java.awt.GridBagConstraints;
@@ -11,6 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import javax.swing.BorderFactory;
@@ -37,6 +42,8 @@ public class PurchaseItemPanel extends JPanel {
     private JTextField nameField;
     private JTextField priceField;
     private JButton addItemButton;    
+    
+    public ArrayList<SoldItem> soldItems = new ArrayList<SoldItem>();
 
     // Warehouse model
     private SalesSystemModel model;
@@ -192,7 +199,8 @@ public class PurchaseItemPanel extends JPanel {
             	String quantityerror = stockItem.getName()+ ": Only " + warehouseItem.getQuantity()+ " left in stock." ;
             	JOptionPane.showMessageDialog(null, quantityerror, "Error", JOptionPane.ERROR_MESSAGE);
             }else {
-            	SoldItem soldItem = new SoldItem(stockItem, quantity);                
+            	SoldItem soldItem = new SoldItem(stockItem, quantity);     
+            	soldItems.add(soldItem);
                 stockItem.setQuantity(stockItem.getQuantity() - quantity);                
             	model.getCurrentPurchaseTableModel().addItem(soldItem);            	
             }
@@ -220,7 +228,35 @@ public class PurchaseItemPanel extends JPanel {
         nameField.setText("");
         priceField.setText("");
     }
-
+    
+    
+    
+    
+	public void updateWarehouse() {
+		// log.debug(model.getCurrentPurchaseTableModel());
+		
+		double sum = 0;
+		ArrayList<SoldItem> items = new ArrayList<>();
+		
+		for (int i = 0; i < soldItems.size(); i++) {
+			SoldItem soldItem = soldItems.get(i);
+			items.add(soldItem);
+			StockItem warehouseItem = model.getWarehouseTableModel()
+			.getItemByName(soldItem.getName());
+			sum += soldItem.getSum();
+			warehouseItem.setQuantity(warehouseItem.getQuantity()
+			- soldItem.getQuantity());
+			
+		}
+		Date date = new Date(UNDEFINED_CONDITION, UNDEFINED_CONDITION, UNDEFINED_CONDITION);
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
+		
+		SoldItemsArray sale = new SoldItemsArray(items, dateFormatter.format(date).toString(),
+		timeFormatter.format(date).toString(), sum);
+		model.getCurrentHistoryTabelModel().addItem(sale);
+		soldItems.clear();
+	}
     /*
      * === Ideally, UI's layout and behavior should be kept as separated as
      * possible. If you work on the behavior of the application, you don't want

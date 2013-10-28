@@ -1,0 +1,5 @@
+package ee.ut.math.tvt.LaheLabor.ui.model;
+
+public class DetailedHistoryTableModel {
+
+}
