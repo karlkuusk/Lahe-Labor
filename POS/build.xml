@@ -156,15 +156,19 @@
 	</target>
 	
 	<target name="git.push">
-		<antcall target="-git.check.userinfo"/>
-		<echo message="Found information: "/>
-		<echo message="Username: ${git.username}"/>
-		<echo message="Email: ${git.username}"/>
 		
 		<exec executable="git">
 			<arg value="push"/>
 			<arg value="https://${commit.username}:${commit.password}@${repository.name}.git"/>
 		</exec>
+	</target>	
+		
+	<target name="-git" if="git.information.correct.condition">
+		<antcall target="git.add"/>
+		<antcall target="git.commit"/>
+		<antcall target="git.push"/>
+		<property name="commit.username" value=""/>
+		<property name="commit.password" value=""/>
 	</target>	
 		
 	<target name="-git.check.userinfo">
@@ -216,7 +220,7 @@
 			addproperty="git.updated.password"
 		/>
 		<input 
-			message="Do you want to save your password in clear text?"
+			message="Do you want to save your password in clear text (y/n)?"
 			validargs="y,n"
 			addproperty="git.save.password"
 		/>
@@ -232,12 +236,20 @@
 	</target>
 	
 	<target name="git_commit">
-		<antcall target="git.add"/>
-		<antcall target="git.commit"/>
-		<antcall target="git.push"/>
-		<property name="commit.username" value=""/>
-		<property name="commit.password" value=""/>
-
+		<antcall target="-git.check.userinfo"/>
+		<echo message="Found information: "/>
+		<echo message="Username: ${git.username}"/>
+		<echo message="Email: ${git.username}"/>
+		
+		<input
+			message="Is information correct (y/n)?"
+			validargs="y,n"
+			addproperty="git.information.correct"
+		/>
+		<condition property="git.information.correct.condition">
+			<equals arg1="y" arg2="${git.information.correct}"/>
+		</condition>
+		<antcall target="-git" />
 	</target>
 
 </project>
