@@ -156,7 +156,7 @@
 	</target>
 	
 	<target name="git.push">
-		
+		<echo>https://${commit.username}:${commit.password}@${repository.name}.git</echo>
 		<exec executable="git">
 			<arg value="push"/>
 			<arg value="https://${commit.username}:${commit.password}@${repository.name}.git"/>
