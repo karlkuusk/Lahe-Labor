@@ -255,7 +255,7 @@
 			addproperty="git.save.password"
 		/>
 		<condition property="git.save.password.condition">
-			<equals arg1="n" arg2="${git.save.password}"/>
+			<equals arg1="y" arg2="${git.save.password}"/>
 		</condition>
 		<antcall target="-git.save.password"/>
 	</target>
