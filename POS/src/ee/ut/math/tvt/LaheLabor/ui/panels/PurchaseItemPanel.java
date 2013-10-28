@@ -134,15 +134,15 @@ public class PurchaseItemPanel extends JPanel {
         return panel;
     }
     private String[] getStockName() {
-        int nStockItems = model.getWarehouseTableModel().getTableRows().size();
-        String[] itemComboBoxArray = new String[nStockItems];
+        int allStockItems = model.getWarehouseTableModel().getTableRows().size();
+        String[] itemsarray = new String[allStockItems];
         int i = 0;
         for (final StockItem stockItem : model.getWarehouseTableModel()
                         .getTableRows()) {
-                itemComboBoxArray[i] = stockItem.getName();
+                itemsarray[i] = stockItem.getName();
                 i++;
         }
-        return itemComboBoxArray;
+        return itemsarray;
     }
 
 
@@ -191,12 +191,15 @@ public class PurchaseItemPanel extends JPanel {
             if (quantity > warehouseItem.getQuantity()){
             	String quantityerror = stockItem.getName()+ ": Only " + warehouseItem.getQuantity()+ " left in stock." ;
             	JOptionPane.showMessageDialog(null, quantityerror, "Error", JOptionPane.ERROR_MESSAGE);
-            }else {            	
-            	model.getCurrentPurchaseTableModel().addItem(new SoldItem(stockItem, quantity));
+            }else {
+            	SoldItem soldItem = new SoldItem(stockItem, quantity);                
+                stockItem.setQuantity(stockItem.getQuantity() - quantity);                
+            	model.getCurrentPurchaseTableModel().addItem(soldItem);            	
             }
            
         }
-    }
+    }  
+
 
     /**
      * Sets whether or not this component is enabled.

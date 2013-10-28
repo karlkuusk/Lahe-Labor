@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.LaheLabor.ui.tabs;
 
 import ee.ut.math.tvt.LaheLabor.domain.data.ConfirmPurchase;
+import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
 import ee.ut.math.tvt.LaheLabor.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
@@ -172,8 +173,11 @@ public class PurchaseTab {
   protected void submitPurchaseButtonClicked() {
     log.info("Sale complete");
     try {
-    	
-    	ConfirmPurchase confirm = new ConfirmPurchase(purchasePane, SIIA_VAJA_OSTUSUMMAT); // <---<---<--- SIIA TARVIS OSTU SUMMAT
+    	double itemsum = 0;
+    		for (final SoldItem soldItem : model.getCurrentPurchaseTableModel().getTableRows()) {
+    			itemsum += soldItem.getSum();
+    		}    	
+    	ConfirmPurchase confirm = new ConfirmPurchase(purchasePane,itemsum); 
     	confirm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     	confirm.setVisible(true);
     	
