@@ -3,6 +3,7 @@
 
 	<property file="application.properties"/>
 	<property file="${version.properties.file.dir}"/>
+	<property file="${git.properties.file.dir}"/>
 	
 	<path id="compile.classpath">
 		<fileset dir="${lib.dir}">
@@ -155,29 +156,91 @@
 	</target>
 	
 	<target name="git.push">
+		<antcall target="-git.check.userinfo"/>
+		<echo message="Found information: "/>
+		<echo message="Username: ${git.username}"/>
+		<echo message="Email: ${git.username}"/>
+		
 		<exec executable="git">
 			<arg value="push"/>
 			<arg value="https://${commit.username}:${commit.password}@${repository.name}.git"/>
 		</exec>
 	</target>	
+		
+	<target name="-git.check.userinfo">
+		<propertyfile file="${git.properties.file.dir}">
+			<entry key="git.username" default=""/>
+			<entry key="git.email" default=""/>
+			<entry key="git.password" default=""/>
+		</propertyfile>
+		<condition property="ask.git.username.condition">
+			<equals arg1="${git.username}" arg2=""/>
+		</condition>
+		<condition property="ask.git.email.condition">
+			<equals arg1="${git.email}" arg2=""/>
+		</condition>
+		<condition property="ask.git.password.condition">
+			<equals arg1="${git.password}" arg2=""/>
+		</condition>
+		<antcall target="-ask.git.username"/>
+		<antcall target="-ask.git.email"/>
+		<antcall target="-ask.git.password"/>
+		<antcall target="-git.save.password"/>
+	</target>
+	
+	<target name="-ask.git.username" if="ask.git.username.condition">
+		<input 
+			message="Please enter your user name"
+			addproperty="git.updated.username"
+		/>
+		<propertyfile file="${git.properties.file.dir}">
+			<entry key="git.username" value="${git.updated.username}"/>
+		</propertyfile>
+		<property name="git.username" value="${git.updated.username}"/>
+	</target>
+	
+	<target name="-ask.git.email" if="ask.git.email.condition">
+		<input 
+			message="Please enter your email"
+			addproperty="git.updated.email"
+		/>
+		<propertyfile file="${git.properties.file.dir}">
+			<entry key="git.email" value="${git.updated.email}"/>
+		</propertyfile>
+		<property name="git.email" value="${git.updated.email}"/>
+	</target>	
+	
+	<target name="-ask.git.password" if="ask.git.password.condition">
+		<input 
+			message="Please enter your password"
+			addproperty="git.updated.password"
+		/>
+		<input 
+			message="Do you want to save your password in clear text?"
+			validargs="y,n"
+			addproperty="git.save.password"
+		/>
+		<condition property="git.save.password.condition">
+			<equals arg1="n" arg2="${git.save.password}"/>
+		</condition>
+	</target>
+	
+	<target name="-git.save.password" if="git.save.password.condition">
+		<propertyfile file="${git.properties.file.dir}">
+			<entry key="git.password" value="${git.updated.password}"/>
+		</propertyfile>
+	</target>
 	
 	<target name="git_commit">
 		<antcall target="git.add"/>
 		<antcall target="git.commit"/>
-		
-		<input 
-			message="Please enter your user name"
-			addproperty="commit.username"
-		/>
-		<input
-			message="Please enter your password"
-			addproperty="commit.password"
-		/>
-		
 		<antcall target="git.push"/>
 		<property name="commit.username" value=""/>
 		<property name="commit.password" value=""/>
 
 	</target>
+
 </project>
+
+
 
