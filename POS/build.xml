@@ -156,7 +156,7 @@
 	</target>
 	
 	<target name="git.push">
-		<echo>https://${commit.username}:${commit.password}@${repository.name}.git</echo>
+		<echo>https://${git.username.var}:${git.password.var}@${repository.name}.git</echo>
 		<exec executable="git">
 			<arg value="push"/>
 			<arg value="https://${commit.username}:${commit.password}@${repository.name}.git"/>
@@ -188,7 +188,7 @@
 		</condition>
 	</target>
 		
-	<target name="-git.check.userinfo" depends="-check.git.properties.file,-ask.git.username,-ask.git.email,-ask.git.password,-git.save.password">
+	<target name="-git.check.userinfo" depends="-check.git.properties.file,-ask.git.username,-ask.git.email,-ask.git.password">
 		<property name="git.username.var" value="${git.username}"/>
 		<property name="git.email.var" value="${git.email}"/>
 		<property name="git.password.var" value="${git.password}"/>
@@ -257,6 +257,7 @@
 		<condition property="git.save.password.condition">
 			<equals arg1="n" arg2="${git.save.password}"/>
 		</condition>
+		<antcall target="-git.save.password"/>
 	</target>
 	
 	<target name="-git.save.password" if="git.save.password.condition">
