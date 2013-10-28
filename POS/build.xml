@@ -128,5 +128,55 @@
 		</propertyfile>
 	</target>
 	
+	<target name="git.commit">
+		<input 
+			message="Please enter commit message"
+			addproperty="commit.message"
+		/>
+		<exec executable="git">
+			<arg value="commit"/>
+			<arg value="-m"/>
+			<arg value="${commit.message}"/>
+		</exec>
+	</target>
+	
+	<target name="git.add">
+		<exec executable="git">
+			<arg value="add"/>
+			<arg value="-A"/>
+			<arg value=":/"/>
+		</exec>
+	</target>
+	
+	<target name="git.pull">
+		<exec executable="git">
+			<arg value="pull"/>
+		</exec>
+	</target>
+	
+	<target name="git.push">
+		<exec executable="git">
+			<arg value="push https://${commit.username}:${commit.password}${repository.name}.git"/>
+		</exec>
+	</target>	
+	
+	<target name="git_commit">
+		<antcall target="git.add"/>
+		<antcall target="git.commit"/>
+		
+		<input 
+			message="Please enter your user name"
+			addproperty="commit.username"
+		/>
+		<input
+			message="Please enter your password"
+			addproperty="commit.password"
+		/>
+		
+		<antcall target="git.push"/>
+		<property name="commit.username" value=""/>
+		<property name="commit.password" value=""/>
+
+	</target>
 </project>
 
