@@ -238,7 +238,7 @@
 		<exec executable="git">
 			<arg value="config"/>
 			<arg value="--global"/>
-			<arg value="--push.default"/>
+			<arg value="push.default"/>
 			<arg value="${git.push.default}"/>
 		</exec>
 	</target>
