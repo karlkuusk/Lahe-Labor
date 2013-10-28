@@ -44,7 +44,7 @@
 			includeantruntime="${includeatruntime}">
 			<classpath refid="compile.classpath"/>
 		</javac>
-		<antcall target="update or create log4j properties file"/>
+		<antcall target="-update or create log4j properties file"/>
 	</target>
 
 	<target name="clean" description="Clean up build system results">
@@ -73,11 +73,11 @@
 				<attribute name="Main-Class" value="${main.method.class.dir}"/>
 			</manifest>
 		</jar>
-		<antcall target="update build.number"/>
+		<antcall target="-update build.number"/>
 	</target>
 		
 	
-	<target name="update build.number">
+	<target name="-update build.number">
 			
 		<scriptdef name="increment" language="javascript">
 			<attribute name="init_build_revision_number" />
@@ -118,7 +118,7 @@
 		</propertyfile>
 	</target>
 	
-	<target name="update or create log4j properties file">
+	<target name="-update or create log4j properties file">
 		<mkdir dir="${log4j.dir}"/>
 		<propertyfile file="${log4j.properties.file.dir}">
 			<entry key="log4j.rootLogger" value="${log4j.level},FILE"/>
@@ -129,7 +129,7 @@
 		</propertyfile>
 	</target>
 	
-	<target name="git.commit">
+	<target name="-git.commit">
 		<input 
 			message="Please enter commit message"
 			addproperty="commit.message"
@@ -141,7 +141,7 @@
 		</exec>
 	</target>
 	
-	<target name="git.add">
+	<target name="-git.add">
 		<exec executable="git">
 			<arg value="add"/>
 			<arg value="-A"/>
@@ -155,19 +155,50 @@
 		</exec>
 	</target>
 	
-	<target name="git.push">
+	<target name="-git.push">
 		<exec executable="git">
 			<arg value="push"/>
 			<arg value="https://${git.username.var}:${git.password.var}@${repository.name}.git"/>
 		</exec>
 	</target>	
 		
+	<target name="-git.push.tags">
+		<exec executable="git">
+			<arg value="push"/>
+			<arg value="--tags"/>
+			<arg value="https://${git.username.var}:${git.password.var}@${repository.name}.git"/>
+		</exec>
+	</target>			
+	
+	<target name="-git.add.tags">
+		<input
+			message="Please enter tag name"
+			addproperty="git.tag.name"
+		/>
+		
+		<input
+			message="Please enter tag comment"
+			addproperty="git.tag.comment"
+		/>
+		
+		<exec executable="git">
+			<arg value="tag"/>
+			<arg value="-a"/>
+			<arg value="${git.tag.name}"/>
+			<arg value="-m"/>
+			<arg value="${git.tag.comment}"/>
+		</exec>
+	</target>
+			
 	<target name="-git" if="git.information.correct.condition">
-		<antcall target="git.add"/>
-		<antcall target="git.commit"/>
-		<antcall target="git.push"/>
-		<property name="commit.username" value=""/>
-		<property name="commit.password" value=""/>
+		<antcall target="-git.add"/>
+		<antcall target="-git.commit"/>
+		<antcall target="-git.push"/>
+	</target>	
+		
+	<target name="-gittagging" if="git.information.correct.condition">
+		<antcall target="-git.add.tags"/>
+		<antcall target="-git.push.tags"/>
 	</target>	
 		
 	<target name="-check.git.properties.file" >
@@ -243,10 +274,10 @@
 	</target>
 	
 	<target name="-ask.git.password" if="ask.git.password.condition">
-		<input 
-			message="Please enter your password"
-			addproperty="git.updated.password"
-		/>
+		<input message="Please enter your password " addproperty="git.updated.password">
+			<!-- <handler classname="org.apache.tools.ant.input.SecureInputHandler" />  -->
+			
+		</input>
 		<property name="git.password.var" value="${git.updated.password}"/>
 		<input 
 			message="Do you want to save your password in clear text (y/n)?"
@@ -273,7 +304,7 @@
 		</propertyfile>
 	</target>	
 	
-	<target name="git_commit" depends="-git.check.userinfo">
+	<target name="git_commit" depends="-git.check.userinfo" description="Add and commit local changes and then push">
 	
 		<echo message="Found information: "/>
 		<echo>Username: ${git.username.var}</echo>
@@ -291,6 +322,24 @@
 		<antcall target="-git.update.userinfo" />
 	</target>
 
+	<target name="git_tag" depends="-git.check.userinfo" description="Create a tag and push it">
+	
+		<echo message="Found information: "/>
+		<echo>Username: ${git.username.var}</echo>
+		<echo>Email: ${git.email.var}</echo>
+		
+		<input
+			message="Is information correct?"
+			validargs="y,n"
+			addproperty="git.information.correct"
+		/>
+		<condition property="git.information.correct.condition">
+			<equals arg1="y" arg2="${git.information.correct}"/>
+		</condition>
+		<antcall target="-gittagging" />
+		<antcall target="-git.update.userinfo" />
+	</target>	
+	
 </project>
 
 
