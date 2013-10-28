@@ -1,25 +1,34 @@
 package ee.ut.math.tvt.LaheLabor.ui.tabs;
 
 import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.LaheLabor.ui.AddToWarehousePopup;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
+import org.apache.log4j.Logger;
+
 
 public class StockTab {
+	
+	private static final Logger log = Logger.getLogger(StockTab.class);
 
-  private JButton addItem;
+	private JButton addItem;
+	private SalesSystemModel model;
 
-  private SalesSystemModel model;
-
-  public StockTab(SalesSystemModel model) {
+	public StockTab(SalesSystemModel model) {
     this.model = model;
   }
 
@@ -58,7 +67,7 @@ public class StockTab {
     gc.anchor = GridBagConstraints.NORTHWEST;
     gc.weightx = 0;
 
-    addItem = new JButton("Add");
+    addItem = createAddButton();
     gc.gridwidth = GridBagConstraints.RELATIVE;
     gc.weightx = 1.0;
     panel.add(addItem, gc);
@@ -66,12 +75,23 @@ public class StockTab {
     panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     return panel;
   }
+  
+  private JButton createAddButton() {
+		JButton b = new JButton("Add");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clickingAddButton();
+			}
+		});
+
+		return b;
+	}
 
 
   // table of the wareshouse stock
   private Component drawStockMainPane() {
     JPanel panel = new JPanel();
-//liisbeti oma
+
     JTable table = new JTable(model.getWarehouseTableModel());
 
     JTableHeader header = table.getTableHeader();
@@ -91,5 +111,14 @@ public class StockTab {
     panel.setBorder(BorderFactory.createTitledBorder("Warehouse status"));
     return panel;
   }
+  
+  protected void clickingAddButton() {
+		log.info("Adding new items to warehouse tab.");
+		AddToWarehousePopup dialog = new AddToWarehousePopup(
+				model.getWarehouseTableModel());
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setVisible(true);
+		draw();
+	}
 
 }
