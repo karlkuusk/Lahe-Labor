@@ -201,6 +201,12 @@
 			<entry key="git.username" value="${git.updated.username}"/>
 		</propertyfile>
 		<property name="git.username" value="${git.updated.username}"/>
+		<exec executable="git">
+			<arg value="config"/>
+			<arg value="--global"/>
+			<arg value="user.name"/>
+			<arg value="${git.username}"/>
+		</exec>
 	</target>
 	
 	<target name="-ask.git.email" if="ask.git.email.condition">
@@ -212,7 +218,27 @@
 			<entry key="git.email" value="${git.updated.email}"/>
 		</propertyfile>
 		<property name="git.email" value="${git.updated.email}"/>
+		<exec executable="git">
+			<arg value="config"/>
+			<arg value="--global"/>
+			<arg value="user.email"/>
+			<arg value="${git.email}"/>
+		</exec>
 	</target>	
+	
+	<target name="set.git.push.default">
+		<input
+			message="Set git push simple"
+			validargs="matching,simple"
+			addproperty="git.push.default"
+		/>
+		<exec executable="git">
+			<arg value="config"/>
+			<arg value="--global"/>
+			<arg value="--push.default"/>
+			<arg value="${git.push.default}"/>
+		</exec>
+	</target>
 	
 	<target name="-ask.git.password" if="ask.git.password.condition">
 		<input 
