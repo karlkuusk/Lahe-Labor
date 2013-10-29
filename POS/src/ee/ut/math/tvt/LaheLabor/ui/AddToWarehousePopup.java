@@ -173,7 +173,6 @@ public class AddToWarehousePopup extends JDialog {
 
 		StockItem newItem = new StockItem(id, name, "", price, quantity);
 		this.stockTableModel.addItem(newItem);
-
 		dispose();
 
 	}

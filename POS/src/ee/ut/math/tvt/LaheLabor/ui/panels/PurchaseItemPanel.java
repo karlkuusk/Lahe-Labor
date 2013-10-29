@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -141,6 +141,7 @@ public class PurchaseItemPanel extends JPanel {
         return panel;
     }
     private String[] getStockName() {
+
         int allStockItems = model.getWarehouseTableModel().getTableRows().size();
         String[] itemsarray = new String[allStockItems];
         int i = 0;
@@ -223,6 +224,7 @@ public class PurchaseItemPanel extends JPanel {
      * Reset dialog fields.
      */
     public void reset() {
+    	updateItemField();
         itemField.setSelectedIndex(-1);
         quantityField.setText("1");
         nameField.setText("");
@@ -230,13 +232,19 @@ public class PurchaseItemPanel extends JPanel {
     }
     
     
-    
+    private void updateItemField(){
+    	itemField.removeAllItems();
+    	String [] stockitems=getStockName();
+    	for(int i=0;i<stockitems.length;i++){
+    		itemField.addItem(stockitems[i]);
+    	}
+    }
     
 	public void updateWarehouse() {
 		// log.debug(model.getCurrentPurchaseTableModel());
 		
 		double sum = 0;
-		ArrayList<SoldItem> items = new ArrayList<>();
+		ArrayList<SoldItem> items = new ArrayList<SoldItem>();
 		
 		for (int i = 0; i < soldItems.size(); i++) {
 			SoldItem soldItem = soldItems.get(i);
@@ -248,13 +256,17 @@ public class PurchaseItemPanel extends JPanel {
 			- soldItem.getQuantity());
 			
 		}
-		Date date = new Date(UNDEFINED_CONDITION, UNDEFINED_CONDITION, UNDEFINED_CONDITION);
+		Date date = new Date();
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
 		SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
 		
 		SoldItemsArray sale = new SoldItemsArray(items, dateFormatter.format(date).toString(),
 		timeFormatter.format(date).toString(), sum);
+		
+		//System.out.println(sale.getSoldItems);
+		
 		model.getCurrentHistoryTabelModel().addItem(sale);
+		
 		soldItems.clear();
 	}
     /*
@@ -306,4 +318,7 @@ public class PurchaseItemPanel extends JPanel {
         return gc;
     }
 
+    public SalesSystemModel getModel(){
+    	return model;
+    }
 }

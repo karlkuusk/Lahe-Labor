@@ -146,8 +146,10 @@ public class PurchaseTab {
 
   /** Event handler for the <code>new purchase</code> event. */
   protected void newPurchaseButtonClicked() {
+	 
     log.info("New sale process started");
     try {
+      //domainController.loadWarehouseState();
       domainController.startNewPurchase();
       startNewSale();
     } catch (VerificationFailedException e1) {
@@ -177,7 +179,7 @@ public class PurchaseTab {
     		for (final SoldItem soldItem : model.getCurrentPurchaseTableModel().getTableRows()) {
     			itemsum += soldItem.getSum();
     		}    	
-    	ConfirmPurchase confirm = new ConfirmPurchase(purchasePane,itemsum); 
+    	ConfirmPurchase confirm = new ConfirmPurchase(purchasePane,itemsum,this); 
     	confirm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     	confirm.setVisible(true);
     	
@@ -186,8 +188,7 @@ public class PurchaseTab {
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
       );
-      endSale();
-      model.getCurrentPurchaseTableModel().clear();
+      
     } catch (VerificationFailedException e1) {
       log.error(e1.getMessage());
     }
@@ -263,6 +264,12 @@ public class PurchaseTab {
     gc.gridwidth = GridBagConstraints.RELATIVE;
 
     return gc;
+  }
+
+  
+  public void endRemoteSale(){
+      endSale();
+      model.getCurrentPurchaseTableModel().clear();
   }
 
 }

@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.log4j.Logger;
-//import com.jgoodies.looks.windows.WindowsLookAndFeel;
+import com.jgoodies.looks.windows.WindowsLookAndFeel;
 import ee.ut.math.tvt.LaheLabor.domain.data.SoldItemsArray;
 import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
 import ee.ut.math.tvt.LaheLabor.ui.model.DetailedHistoryTableModel;
@@ -34,12 +34,12 @@ public class DetailedHistory extends JDialog {
 		
 	    setTitle("Sales system history");
 
-/*	    try {
+	    try {
 	      UIManager.setLookAndFeel(new WindowsLookAndFeel());
 
 	    } catch (UnsupportedLookAndFeelException e1) {
 	      log.warn(e1.getMessage());
-	    }*/
+	    }
 
 	    drawWidgets();
 

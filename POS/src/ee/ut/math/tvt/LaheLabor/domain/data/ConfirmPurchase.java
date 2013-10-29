@@ -14,57 +14,62 @@ public class ConfirmPurchase extends JDialog{
 	
 	private PurchaseItemPanel purchaseItemPanel;
 	
-	private final JPanel panel = new JPanel();
+	private JPanel panel;
 	private static final Logger log = Logger.getLogger(ConfirmPurchase.class);
 	public double sumOfBill;
 	private JTextField paymentAmount;
 	double dChangeAmount = 0;
 	private JLabel changeAmount;
+	private PurchaseTab purchaseTab;
 	
 	public ConfirmPurchase(PurchaseItemPanel purchaseItemPanel,
-			double sumOfBill) {
+			double sumOfBill,PurchaseTab purchacheTab) {
+		this.purchaseTab=purchacheTab;
+		panel = new JPanel();
 		this.purchaseItemPanel = purchaseItemPanel;
 		this.sumOfBill = sumOfBill;
 		this.dChangeAmount = -sumOfBill;
-		panel.setLocation(200, 200);
-		panel.setSize(450, 150);
+		this.setLocation(200,200);
+		this.setSize(450,150);
+		//panel.setLocation(200, 200);
+		//panel.setSize(450, 150);
 		getContentPane().setLayout(new BorderLayout());
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		
-		{	JLabel arveSumma = new JLabel("Bill: " + sumOfBill);
-			panel.add(arveSumma);	}
+		JLabel arveSumma = new JLabel("Bill: " + sumOfBill);
+			panel.add(arveSumma);	
 		
-		{	JLabel makstudSumma = new JLabel("Amount paid: ");
-			panel.add(makstudSumma);	}
+			JLabel makstudSumma = new JLabel("Amount paid: ");
+			panel.add(makstudSumma);	
 		
-		{	paymentAmount = new JTextField();
+			paymentAmount = new JTextField();
 			paymentAmount.setColumns(7);
-			paymentAmount.setText("...");
-			panel.add(paymentAmount);	}
+			paymentAmount.setText("");
+			panel.add(paymentAmount);	
 		
-		{
+		
 			// EPAButton is short for Enter_Payment_Amount_Button
-			{	JButton EPAButton = new JButton("Enter");
+				JButton EPAButton = new JButton("Enter");
 				panel.add(EPAButton);
 				getRootPane().setDefaultButton(EPAButton);
 				EPAButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						EPAButtonClicked();	}
 					});
-				}
+				
 			
 			changeAmount = new JLabel();
 			changeAmount.setText("Amount to return: " + dChangeAmount);
 			panel.add(changeAmount);
-		}
-		{
+		
+	
 			JPanel bPane = new JPanel();
 			bPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(bPane, BorderLayout.PAGE_END);
-			{
+			
 				JButton acceptButton = new JButton("Accept");
 				acceptButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -73,30 +78,37 @@ public class ConfirmPurchase extends JDialog{
 					}
 				});
 				bPane.add(acceptButton);
-			}
 			
-			{	JButton cancelButton = new JButton("Cancel");
+			
+				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();}
 				});
 				
 				bPane.add(cancelButton);
-			}			
-		}
+			panel.setVisible(true);	
+		
 	}
 	
 	protected void acceptButtonClicked() {
 		dispose();
 		purchaseItemPanel.updateWarehouse();
+		purchaseTab.endRemoteSale();
 	}
 	
 	protected void EPAButtonClicked() {
 			String strAmountPaid = paymentAmount.getText();
-			paymentAmount.setText("");
-			double dPaymentAmount = Double.parseDouble(strAmountPaid);
-			dChangeAmount += dPaymentAmount;
-			changeAmount.setText("Amount to return: " + dChangeAmount);
+			//paymentAmount.setText("");
+				try{
+					double dPaymentAmount = Double.parseDouble(strAmountPaid);
+					dChangeAmount += dPaymentAmount;
+					changeAmount.setText("Amount to return: " + dChangeAmount);
+				}
+				catch(NumberFormatException e){
+					log.info(e);;
+				}
+
 		}
 
 	
