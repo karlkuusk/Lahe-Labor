@@ -28,7 +28,7 @@ public class ConfirmPurchase extends JDialog{
 		panel = new JPanel();
 		this.purchaseItemPanel = purchaseItemPanel;
 		this.sumOfBill = sumOfBill;
-		this.dChangeAmount = -sumOfBill;
+		this.dChangeAmount =0;
 		this.setLocation(200,200);
 		this.setSize(450,150);
 		//panel.setLocation(200, 200);
@@ -47,7 +47,7 @@ public class ConfirmPurchase extends JDialog{
 		
 			paymentAmount = new JTextField();
 			paymentAmount.setColumns(7);
-			paymentAmount.setText("");
+			paymentAmount.setText(""+sumOfBill);
 			panel.add(paymentAmount);	
 		
 		
@@ -102,11 +102,18 @@ public class ConfirmPurchase extends JDialog{
 			//paymentAmount.setText("");
 				try{
 					double dPaymentAmount = Double.parseDouble(strAmountPaid);
-					dChangeAmount += dPaymentAmount;
-					changeAmount.setText("Amount to return: " + dChangeAmount);
+					if(dPaymentAmount>=sumOfBill){
+						dChangeAmount=-sumOfBill+dPaymentAmount;
+						changeAmount.setText("Amount to return: " + dChangeAmount);
+					}
+					else{
+						paymentAmount.setText(""+sumOfBill);
+						changeAmount.setText("Amount to return: " + 0);
+					}
 				}
 				catch(NumberFormatException e){
-					log.info(e);;
+					paymentAmount.setText(""+sumOfBill);
+					log.info(e);
 				}
 
 		}

@@ -149,7 +149,6 @@ public class PurchaseTab {
 	 
     log.info("New sale process started");
     try {
-      //domainController.loadWarehouseState();
       domainController.startNewPurchase();
       startNewSale();
     } catch (VerificationFailedException e1) {
@@ -162,6 +161,7 @@ public class PurchaseTab {
   protected void cancelPurchaseButtonClicked() {
     log.info("Sale cancelled");
     try {
+    	purchasePane.restoreWarehouse();
       domainController.cancelCurrentPurchase();
       endSale();
       model.getCurrentPurchaseTableModel().clear();

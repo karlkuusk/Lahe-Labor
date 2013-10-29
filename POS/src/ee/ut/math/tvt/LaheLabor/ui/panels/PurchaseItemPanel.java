@@ -252,8 +252,7 @@ public class PurchaseItemPanel extends JPanel {
 			StockItem warehouseItem = model.getWarehouseTableModel()
 			.getItemByName(soldItem.getName());
 			sum += soldItem.getSum();
-			warehouseItem.setQuantity(warehouseItem.getQuantity()
-			- soldItem.getQuantity());
+			//warehouseItem.setQuantity(warehouseItem.getQuantity()- soldItem.getQuantity());
 			
 		}
 		Date date = new Date();
@@ -267,6 +266,15 @@ public class PurchaseItemPanel extends JPanel {
 		
 		model.getCurrentHistoryTabelModel().addItem(sale);
 		
+		soldItems.clear();
+	}
+	
+	public void restoreWarehouse(){
+		for(int i=0;i<soldItems.size();i++){
+			SoldItem soldItem = soldItems.get(i);
+			StockItem warehouseItem = model.getWarehouseTableModel().getItemByName(soldItem.getName());
+			warehouseItem.setQuantity(warehouseItem.getQuantity()+ soldItem.getQuantity());
+		}
 		soldItems.clear();
 	}
     /*
