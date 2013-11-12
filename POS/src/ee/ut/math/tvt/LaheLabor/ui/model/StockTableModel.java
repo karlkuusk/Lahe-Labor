@@ -1,10 +1,10 @@
-package ee.ut.math.tvt.LaheLabor.ui.model;
+package ee.ut.math.tvt.lahelabor.ui.model;
 
 import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
 
 /**
  * Stock item table model.

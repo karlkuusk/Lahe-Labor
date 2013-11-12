@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.domain.exception;
+package ee.ut.math.tvt.lahelabor.domain.exception;
 
 /**
  * Thrown when domain controller's verification fails.

@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.domain.data;
+package ee.ut.math.tvt.lahelabor.domain.data;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
-import ee.ut.math.tvt.LaheLabor.ui.panels.PurchaseItemPanel;
-import ee.ut.math.tvt.LaheLabor.ui.tabs.PurchaseTab;
+import ee.ut.math.tvt.lahelabor.ui.panels.PurchaseItemPanel;
+import ee.ut.math.tvt.lahelabor.ui.tabs.PurchaseTab;
 
 
 public class ConfirmPurchase extends JDialog{

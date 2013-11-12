@@ -1,8 +1,8 @@
 
-package ee.ut.math.tvt.LaheLabor;
-import ee.ut.math.tvt.LaheLabor.domain.controller.*;
-import ee.ut.math.tvt.LaheLabor.domain.controller.impl.*;
-import ee.ut.math.tvt.LaheLabor.ui.*;
+package ee.ut.math.tvt.lahelabor;
+import ee.ut.math.tvt.lahelabor.domain.controller.*;
+import ee.ut.math.tvt.lahelabor.ui.*;
+import ee.ut.math.tvt.lahelabor.domain.controller.impl.*;
 
 import org.apache.log4j.Logger;
 

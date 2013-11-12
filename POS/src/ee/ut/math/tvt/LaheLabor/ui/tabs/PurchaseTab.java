@@ -1,11 +1,11 @@
-package ee.ut.math.tvt.LaheLabor.ui.tabs;
+package ee.ut.math.tvt.lahelabor.ui.tabs;
 
-import ee.ut.math.tvt.LaheLabor.domain.data.ConfirmPurchase;
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
-import ee.ut.math.tvt.LaheLabor.domain.exception.VerificationFailedException;
-import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
-import ee.ut.math.tvt.LaheLabor.ui.panels.PurchaseItemPanel;
+import ee.ut.math.tvt.lahelabor.domain.data.ConfirmPurchase;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
+import ee.ut.math.tvt.lahelabor.domain.exception.VerificationFailedException;
+import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.lahelabor.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.lahelabor.ui.panels.PurchaseItemPanel;
 
 import java.awt.Color;
 import java.awt.Component;

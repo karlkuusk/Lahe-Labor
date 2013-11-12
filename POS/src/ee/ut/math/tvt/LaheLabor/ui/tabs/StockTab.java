@@ -1,7 +1,7 @@
-package ee.ut.math.tvt.LaheLabor.ui.tabs;
+package ee.ut.math.tvt.lahelabor.ui.tabs;
 
-import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
-import ee.ut.math.tvt.LaheLabor.ui.AddToWarehousePopup;
+import ee.ut.math.tvt.lahelabor.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.lahelabor.ui.AddToWarehousePopup;
 
 import java.awt.Color;
 import java.awt.Component;

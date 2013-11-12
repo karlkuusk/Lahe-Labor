@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.ui.panels;
+package ee.ut.math.tvt.lahelabor.ui.panels;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,8 +9,8 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import ee.ut.math.tvt.LaheLabor.domain.data.DetailedHistory;
-import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.lahelabor.domain.data.DetailedHistory;
+import ee.ut.math.tvt.lahelabor.ui.model.SalesSystemModel;
 
 public class HistoryPanel extends JPanel {
 

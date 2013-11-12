@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.ui;
+package ee.ut.math.tvt.lahelabor.ui;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,11 +9,11 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.LaheLabor.domain.exception.VerificationFailedException;
+import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.lahelabor.domain.exception.VerificationFailedException;
 
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
-import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
+import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
 
 /**
  * A simple CLI (limited functionality).

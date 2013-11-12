@@ -1,11 +1,11 @@
-package ee.ut.math.tvt.LaheLabor.ui;
+package ee.ut.math.tvt.lahelabor.ui;
 
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
-import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
-import ee.ut.math.tvt.LaheLabor.ui.tabs.HistoryTab;
-import ee.ut.math.tvt.LaheLabor.ui.tabs.PurchaseTab;
-import ee.ut.math.tvt.LaheLabor.ui.tabs.StockTab;
+import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.lahelabor.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.lahelabor.ui.tabs.HistoryTab;
+import ee.ut.math.tvt.lahelabor.ui.tabs.PurchaseTab;
+import ee.ut.math.tvt.lahelabor.ui.tabs.StockTab;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;

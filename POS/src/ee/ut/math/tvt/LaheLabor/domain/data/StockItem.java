@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.domain.data;
+package ee.ut.math.tvt.lahelabor.domain.data;
 
 /**
  * Stock item. Corresponds to the Data Transfer Object design pattern.

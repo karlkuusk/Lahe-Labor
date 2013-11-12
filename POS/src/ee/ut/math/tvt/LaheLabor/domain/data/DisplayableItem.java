@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.domain.data;
+package ee.ut.math.tvt.lahelabor.domain.data;
 
 /**
  * Base interface for data items, so one JTable can be used to display different entities.

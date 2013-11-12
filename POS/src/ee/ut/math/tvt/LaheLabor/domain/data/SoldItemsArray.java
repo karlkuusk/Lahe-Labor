@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.domain.data;
+package ee.ut.math.tvt.lahelabor.domain.data;
 import java.util.ArrayList;
 
 public class SoldItemsArray implements DisplayableItem {

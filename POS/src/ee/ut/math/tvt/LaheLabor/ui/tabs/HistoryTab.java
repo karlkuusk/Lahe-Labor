@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.ui.tabs;
+package ee.ut.math.tvt.lahelabor.ui.tabs;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -7,9 +7,9 @@ import java.awt.GridBagLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
-import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
-import ee.ut.math.tvt.LaheLabor.ui.panels.HistoryPanel;
+import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.lahelabor.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.lahelabor.ui.panels.HistoryPanel;
 
 /**
  * Encapsulates everything that has to do with the purchase tab (the tab

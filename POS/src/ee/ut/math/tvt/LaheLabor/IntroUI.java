@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor;
+package ee.ut.math.tvt.lahelabor;
 
 
 import java.awt.FlowLayout;

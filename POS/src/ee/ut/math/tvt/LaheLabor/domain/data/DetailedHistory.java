@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.domain.data;
+package ee.ut.math.tvt.lahelabor.domain.data;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -14,9 +14,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.log4j.Logger;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItemsArray;
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
-import ee.ut.math.tvt.LaheLabor.ui.model.DetailedHistoryTableModel;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItemsArray;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
+import ee.ut.math.tvt.lahelabor.ui.model.DetailedHistoryTableModel;
 
 
 public class DetailedHistory extends JDialog {

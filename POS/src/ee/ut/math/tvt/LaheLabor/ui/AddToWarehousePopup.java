@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.ui;
+package ee.ut.math.tvt.lahelabor.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -18,8 +18,8 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
-import ee.ut.math.tvt.LaheLabor.ui.model.StockTableModel;
+import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.ui.model.StockTableModel;
 
 public class AddToWarehousePopup extends JDialog {
 

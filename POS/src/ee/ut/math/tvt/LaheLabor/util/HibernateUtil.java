@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.util;
+package ee.ut.math.tvt.lahelabor.util;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;

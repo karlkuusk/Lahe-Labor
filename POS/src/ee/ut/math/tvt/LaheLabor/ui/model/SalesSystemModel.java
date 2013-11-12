@@ -1,8 +1,8 @@
-package ee.ut.math.tvt.LaheLabor.ui.model;
+package ee.ut.math.tvt.lahelabor.ui.model;
 
 import org.apache.log4j.Logger;
 
-import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
 
 /**
  * Main model. Holds all the other models.

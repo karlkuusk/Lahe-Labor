@@ -1,10 +1,10 @@
-package ee.ut.math.tvt.LaheLabor.domain.controller;
+package ee.ut.math.tvt.lahelabor.domain.controller;
 
 import java.util.List;
 
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
-import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
-import ee.ut.math.tvt.LaheLabor.domain.exception.VerificationFailedException;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
+import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.domain.exception.VerificationFailedException;
 
 /**
  * Sales domain controller is responsible for the domain specific business

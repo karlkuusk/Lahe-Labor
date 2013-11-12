@@ -1,13 +1,15 @@
-package ee.ut.math.tvt.LaheLabor.domain.controller.impl;
+package ee.ut.math.tvt.lahelabor.domain.controller.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ee.ut.math.tvt.LaheLabor.domain.exception.VerificationFailedException;
-import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
-import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
-import ee.ut.math.tvt.LaheLabor.util.HibernateUtil;
+import ee.ut.math.tvt.lahelabor.domain.exception.VerificationFailedException;
+import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
+import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.util.HibernateUtil;
+
+import org.hibernate.*;
 /**
  * Implementation of the sales domain controller.
  */
@@ -33,16 +35,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		// XXX mock implementation
 		List<StockItem> dataset = new ArrayList<StockItem>();
 
-		StockItem chips = new StockItem(1l, "Lays chips", "Potato chips", 11.0, 5);
-		StockItem chupaChups = new StockItem(2l, "Chupa-chups", "Sweets", 8.0, 8);
-	    StockItem frankfurters = new StockItem(3l, "Frankfurters", "Beer sauseges", 15.0, 12);
-	    StockItem beer = new StockItem(4l, "Free Beer", "Student's delight", 0.0, 100);
-
-		dataset.add(chips);
-		dataset.add(chupaChups);
-		dataset.add(frankfurters);
-		dataset.add(beer);
-		
+		Session session=HibernateUtil.currentSession();
+		Query a=session.createQuery("from StockItem");
+		System.out.println(a);
 		return dataset;
 	}
 	public void endSession() {

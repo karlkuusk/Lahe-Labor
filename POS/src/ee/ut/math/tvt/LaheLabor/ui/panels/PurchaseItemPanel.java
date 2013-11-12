@@ -1,10 +1,10 @@
-package ee.ut.math.tvt.LaheLabor.ui.panels;
+package ee.ut.math.tvt.lahelabor.ui.panels;
 
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
-import ee.ut.math.tvt.LaheLabor.domain.data.SoldItemsArray;
-import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
-import ee.ut.math.tvt.LaheLabor.domain.data.ConfirmPurchase;
-import ee.ut.math.tvt.LaheLabor.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItemsArray;
+import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.domain.data.ConfirmPurchase;
+import ee.ut.math.tvt.lahelabor.ui.model.SalesSystemModel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

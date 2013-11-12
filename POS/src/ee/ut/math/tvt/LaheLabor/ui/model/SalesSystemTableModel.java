@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.LaheLabor.ui.model;
+package ee.ut.math.tvt.lahelabor.ui.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 import javax.swing.table.AbstractTableModel;
 
-import ee.ut.math.tvt.LaheLabor.domain.data.DisplayableItem;
+import ee.ut.math.tvt.lahelabor.domain.data.DisplayableItem;
 
 /**
  * Generic table model implementation suitable for extending.
