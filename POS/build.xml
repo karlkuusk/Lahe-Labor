@@ -5,17 +5,28 @@
 	<property file="${version.properties.file.dir}"/>
 	<property file="${git.properties.file.dir}"/>
 	
+<property name="lib.dir" value="${basedir}/lib"/>
+
+	
 	<path id="compile.classpath">
 		<fileset dir="${lib.dir}">
 			<include name="*.jar"/>
 		</fileset>
+        <fileset dir="${lib.hibernate.dir}">
+             <include name="*.jar"/>
+        </fileset>
 	</path>
 
 	<path id="run.classpath">
 		<pathelement location="${build.classes.dir}"/>
+
 		<fileset dir="${lib.dir}">
 			<include name="*.jar"/>
 		</fileset>
+		<fileset dir="${lib.hibernate.dir}">
+             <include name="*.jar"/>
+        </fileset>
+		<pathelement location="${conf.dir}"/>
 		<pathelement location="${data.dir}"/>
 		<pathelement location="${base.dir}"/>
 		<pathelement location="${log4j.dir}"/>
@@ -339,6 +350,26 @@
 		<antcall target="-gittagging" />
 		<antcall target="-git.update.userinfo" />
 	</target>	
+	<target name="dbmanager" description="Start the HSQLDB manager">
+        <java
+            classname="org.hsqldb.util.DatabaseManagerSwing"
+            classpathref="run.classpath"
+            fork="yes"
+        >
+            <arg line="--user sa --url ${db.url}" />
+        </java>
+    </target>
+
+    <target name="startdb" description="Start the HSQLDB with the default params">
+        <java
+            classname="org.hsqldb.Server"
+            classpathref="run.classpath"
+            fork="yes"
+        >
+            <arg line="-database.0 '${db.file}' -dbname.0 '${db.alias}'" /> 
+        </java>
+</target>
+
 	
 </project>
 

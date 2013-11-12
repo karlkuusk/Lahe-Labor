@@ -7,7 +7,7 @@ import ee.ut.math.tvt.LaheLabor.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.LaheLabor.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.LaheLabor.domain.data.SoldItem;
 import ee.ut.math.tvt.LaheLabor.domain.data.StockItem;
-
+import ee.ut.math.tvt.LaheLabor.util.HibernateUtil;
 /**
  * Implementation of the sales domain controller.
  */
@@ -45,4 +45,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		
 		return dataset;
 	}
+	public void endSession() {
+		HibernateUtil.closeSession();
+	}
+
+
 }
