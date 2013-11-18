@@ -13,8 +13,11 @@ import org.hibernate.*;
 /**
  * Implementation of the sales domain controller.
  */
+ @SuppressWarnings("unchecked")
 public class SalesDomainControllerImpl implements SalesDomainController {
-	
+	Session session=HibernateUtil.currentSession();
+	List<StockItem> stockitems=session.createQuery("from SoldItem").list();
+
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
 		// Let's assume we have checked and found out that the buyer is underaged and
 		// cannot buy chupa-chups
@@ -34,10 +37,11 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	public List<StockItem> loadWarehouseState() {
 		// XXX mock implementation
 		List<StockItem> dataset = new ArrayList<StockItem>();
-
-		Session session=HibernateUtil.currentSession();
-		Query a=session.createQuery("from StockItem");
-		System.out.println(a);
+		for(StockItem stockitem:stockitems){
+			dataset.add(stockitem);
+			System.out.println("Foudn stockitem: ");
+			System.out.println(stockitem);
+		}
 		return dataset;
 	}
 	public void endSession() {

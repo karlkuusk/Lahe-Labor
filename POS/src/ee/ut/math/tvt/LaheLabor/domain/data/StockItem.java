@@ -1,20 +1,32 @@
 package ee.ut.math.tvt.lahelabor.domain.data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 /**
  * Stock item. Corresponds to the Data Transfer Object design pattern.
  */
+@Entity
+@Table(name="STOCKITEM")
 public class StockItem implements Cloneable, DisplayableItem {
-	
+    @Id
+	@Column(name="ID")
     private Long id;
-
+    @Column(name="NAME")
     private String name;
-
+    @Column(name="PRICE")
     private double price;
-
+    @Column(name="DESCRIPTION")
     private String description;
-    
+    @Column(name="QUANTITY")
     private int quantity;   
-   
 
     /**
      * Constucts new <code>StockItem</code> with the specified values.
@@ -88,6 +100,8 @@ public class StockItem implements Cloneable, DisplayableItem {
         return id + " " + name + " " + description + " " + price;
     }
 
+
+	
     /**
      * Method for querying the value of a certain column when StockItems are shown
      * as table rows in the SalesSstemTableModel. The order of the columns is:
