@@ -21,7 +21,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 	protected Object getColumnValue(SoldItem item, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return item.getId();
+			return item.getStockItemId();
 		case 1:
 			return item.getName();
 		case 2:

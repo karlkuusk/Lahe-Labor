@@ -26,6 +26,7 @@
         
         <mapping class="ee.ut.math.tvt.lahelabor.domain.data.SoldItem"/>
         <mapping class="ee.ut.math.tvt.lahelabor.domain.data.StockItem"/>
+		<mapping class="ee.ut.math.tvt.lahelabor.domain.data.SoldItemsArray"/>
 
     </session-factory>
 

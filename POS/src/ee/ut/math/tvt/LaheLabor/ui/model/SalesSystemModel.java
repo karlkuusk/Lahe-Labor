@@ -1,9 +1,10 @@
 package ee.ut.math.tvt.lahelabor.ui.model;
 
 import org.apache.log4j.Logger;
-
+import java.util.List;
 import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
-
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItemsArray;
 /**
  * Main model. Holds all the other models.
  */
@@ -29,7 +30,7 @@ public class SalesSystemModel {
         
         warehouseTableModel = new StockTableModel();
         currentPurchaseTableModel = new PurchaseInfoTableModel();
-        currentHistoryTableModel =new HistoryTableModel();
+        currentHistoryTableModel =new HistoryTableModel(this);
         currentDetailedHistoryTableModel=new DetailedHistoryTableModel();
         // populate stock model with data from the warehouse
         warehouseTableModel.populateWithData(domainController.loadWarehouseState());
@@ -51,5 +52,13 @@ public class SalesSystemModel {
     public DetailedHistoryTableModel getCurrentDetailedHistoryTableModel() {
     	return currentDetailedHistoryTableModel;
     }
+	
+	public List<SoldItem> getSoldItems(){
+		return domainController.getSoldItems();
+	}
+	
+	public List<SoldItemsArray> getSoldItemsArray(){
+		return domainController.getSoldItemsArray();
+	}
     
 }

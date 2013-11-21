@@ -7,43 +7,55 @@ import ee.ut.math.tvt.lahelabor.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.lahelabor.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
 import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItemsArray;
 import ee.ut.math.tvt.lahelabor.util.HibernateUtil;
+import ee.ut.math.tvt.lahelabor.hibernate.service.HibernateDataService;
 
-import org.hibernate.*;
 /**
  * Implementation of the sales domain controller.
  */
  @SuppressWarnings("unchecked")
 public class SalesDomainControllerImpl implements SalesDomainController {
-	Session session=HibernateUtil.currentSession();
-	List<StockItem> stockitems=session.createQuery("from SoldItem").list();
+	private HibernateDataService hibernateDataService;
+	
+	public SalesDomainControllerImpl(){
+		hibernateDataService=new HibernateDataService();
+	}
 
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
 		// Let's assume we have checked and found out that the buyer is underaged and
 		// cannot buy chupa-chups
-		throw new VerificationFailedException("Underaged!");
+		System.out.println("SUBB");
+		//throw new VerificationFailedException("Underaged!");
 		// XXX - Save purchase
 	}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {				
 		// XXX - Cancel current purchase
+		System.out.println("CANCEL");
 	}
 	
 
 	public void startNewPurchase() throws VerificationFailedException {
 		// XXX - Start new purchase
+		System.out.println("NEW");
 	}
 
 	public List<StockItem> loadWarehouseState() {
 		// XXX mock implementation
 		List<StockItem> dataset = new ArrayList<StockItem>();
-		for(StockItem stockitem:stockitems){
-			dataset.add(stockitem);
-			System.out.println("Foudn stockitem: ");
-			System.out.println(stockitem);
-		}
+		dataset.addAll(hibernateDataService.getStockItems());
 		return dataset;
 	}
+	
+	public List<SoldItem> getSoldItems(){
+		return hibernateDataService.getSoldItems();
+	}
+	
+	public List<SoldItemsArray> getSoldItemsArray(){
+		return hibernateDataService.getSoldItemsArray();
+	}
+	
 	public void endSession() {
 		HibernateUtil.closeSession();
 	}

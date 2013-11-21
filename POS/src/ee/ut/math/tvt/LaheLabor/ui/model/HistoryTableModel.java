@@ -13,13 +13,15 @@ import ee.ut.math.tvt.lahelabor.ui.SalesSystemUI;
  */
 public class HistoryTableModel extends SalesSystemTableModel<SoldItemsArray> {
 	private static final long serialVersionUID = 1L;
-
+	private SalesSystemModel model;
 	private static final Logger log = Logger.getLogger(HistoryTableModel.class);
+	private ArrayList<SoldItemsArray> sales;
 	
-	private ArrayList<SoldItemsArray> sales=new ArrayList<SoldItemsArray>();
-	
-	public HistoryTableModel() {
+	public HistoryTableModel(SalesSystemModel model) {
 		super(new String[] { "Id", "Date", "Time", "Sum"});
+		this.model=model;
+		sales=new ArrayList<SoldItemsArray>();
+		sales.addAll(model.getSoldItemsArray());
 	}
 
 	@Override

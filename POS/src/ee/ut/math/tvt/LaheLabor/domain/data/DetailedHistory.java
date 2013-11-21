@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -70,7 +70,7 @@ public class DetailedHistory extends JDialog {
 	  
 	  private void addData(){
 		
-		  ArrayList<SoldItem> items=sale.getSoldItems();
+		  List<SoldItem> items=sale.getSoldItems();
 		  for(int i=0;i<items.size();i++){
 			  model.addItem(items.get(i));
 		  }

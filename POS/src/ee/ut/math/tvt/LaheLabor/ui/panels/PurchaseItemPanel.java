@@ -43,7 +43,7 @@ public class PurchaseItemPanel extends JPanel {
     private JTextField priceField;
     private JButton addItemButton;    
     
-    public ArrayList<SoldItem> soldItems = new ArrayList<SoldItem>();
+    public ArrayList<SoldItem> soldItems;
 
     // Warehouse model
     private SalesSystemModel model;
@@ -56,7 +56,8 @@ public class PurchaseItemPanel extends JPanel {
      */
     public PurchaseItemPanel(SalesSystemModel model) {
         this.model = model;
-
+		soldItems = new ArrayList<SoldItem>();
+		soldItems.addAll(model.getSoldItems());
         setLayout(new GridBagLayout());
 
         add(drawDialogPane(), getDialogPaneConstraints());

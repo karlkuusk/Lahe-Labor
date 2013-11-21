@@ -1,26 +1,34 @@
 package ee.ut.math.tvt.lahelabor.domain.data;
 import java.util.ArrayList;
-
-public class SoldItemsArray implements DisplayableItem {
-
-	private static long ID=0l;
-	
+import javax.persistence.*;
+import java.util.*;
+@Entity
+@Table(name="TRANSACTION")
+public class SoldItemsArray implements Cloneable, DisplayableItem{
+	@Id
+	@Column(name="ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private ArrayList<SoldItem> soldItems;
-	
+	@Column(name="DATE")
 	private String date;
+	@Column(name="TIME")
 	private String time;
+	@Column(name="TOTALSUM")
 	private double sum;
+	@OneToMany(mappedBy="soldItemsArray")
+	private List<SoldItem> soldItems;
+
 	
-	public SoldItemsArray(ArrayList<SoldItem> soldItem, String date,String time, double sum) {
+	public SoldItemsArray(List<SoldItem> soldItem, String date,String time, double sum) {
 		this.soldItems=soldItem;
 		this.date=date;
 		this.time=time;
 		this.sum=sum;
-		this.id=ID;
-		ID+=1;
 	}
 	
+	public SoldItemsArray(){
+		;
+	}
 	
 	public Long getId() {
 	return id;
@@ -30,22 +38,40 @@ public class SoldItemsArray implements DisplayableItem {
 	this.id = id;
 	}  
 	
-	public ArrayList<SoldItem> getSoldItems() {
-	return soldItems;
+	public List<SoldItem> getSoldItems() {
+		return soldItems;
 	}
 	
+	public void setSoldItems(List<SoldItem> soldItems) {
+		this.soldItems=soldItems;
+	} 
+	
 	public String getDate() {
-	return date;
+		return date;
 	}
 	
 	
 	public String getTime() {
-	return time;
+		return time;
 	}
 	
 	
 	public double getSum() {
-	return sum;
+		return sum;
+	}
+
+	public void setDate(String date) {
+		this.date=date;
+	}
+	
+	
+	public void setTime(String time) {
+		this.time=time;
+	}
+	
+	
+	public void setSum(double sum) {
+		this.sum=sum;
 	}
 
 }

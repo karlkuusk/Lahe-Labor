@@ -69,6 +69,7 @@ public class StockItem implements Cloneable, DisplayableItem {
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
@@ -89,6 +90,7 @@ public class StockItem implements Cloneable, DisplayableItem {
     }
     
     public int getQuantity() {
+
         return quantity;
     }
 
@@ -108,6 +110,7 @@ public class StockItem implements Cloneable, DisplayableItem {
      * id, name, price, quantity.
      */
     public Object getColumn(int columnIndex) {
+	
         switch(columnIndex) {
             case 0: return id;
             case 1: return name;

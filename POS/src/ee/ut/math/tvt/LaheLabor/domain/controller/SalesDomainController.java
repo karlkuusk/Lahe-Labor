@@ -4,6 +4,7 @@ import java.util.List;
 
 import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
 import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
+import ee.ut.math.tvt.lahelabor.domain.data.SoldItemsArray;
 import ee.ut.math.tvt.lahelabor.domain.exception.VerificationFailedException;
 
 /**
@@ -35,6 +36,9 @@ public interface SalesDomainController {
      */
     public void cancelCurrentPurchase() throws VerificationFailedException;
 
+	public List<SoldItem> getSoldItems();
+	
+	public List<SoldItemsArray> getSoldItemsArray();
     /**
      * Commit business transaction - purchsae of goods.
      * 

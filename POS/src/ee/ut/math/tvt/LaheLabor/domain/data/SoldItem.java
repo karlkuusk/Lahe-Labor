@@ -18,23 +18,33 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	@Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="SALE_ID")
+	private SoldItemsArray soldItemsArray;
     @Column(name="STOCKITEM_ID")
-    private Long stockitem_id;    
+    private Long stockItemId;    
     @Column(name="NAME")
     private String name;
     @Column(name="QUANTITY")
     private Integer quantity;
     @Column(name="ITEMPRICE")
-    private double price;    
+    private double price; 
+	@Transient
+	private StockItem stockItem;
+
     
-    public SoldItem(StockItem stockItem, int quantity) {        
+    public SoldItem(StockItem stockItem, int quantity) { 
+		this.stockItem=stockItem;
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
         this.quantity = quantity;
-        this.stockitem_id=stockItem.getId();
-        
+        this.stockItemId=stockItem.getId();     
+
     }
     
+	public SoldItem(){
+		;
+	}
     
     public Long getId() {
         return id;
@@ -43,6 +53,14 @@ public class SoldItem implements Cloneable, DisplayableItem {
     public void setId(Long id) {
         this.id = id;
     }
+	
+	public void setStockItemId(Long stockItemId){
+		this.stockItemId=stockItemId;
+	}
+	
+	public Long getStockItemId(){
+		return stockItemId;
+	}
     
     public String getName() {
         return name;
@@ -72,8 +90,21 @@ public class SoldItem implements Cloneable, DisplayableItem {
         return price * ((double) quantity);
     }
 
+	public StockItem getStockItem() {
+		return stockItem;
+	}
 
+	public void setSoldItemsArray(SoldItemsArray soldItemsArray){
+		this.soldItemsArray=soldItemsArray;
+	}
+	
+	public SoldItemsArray getSoldItemsArray(){
+		return soldItemsArray;
+	}
 
+	public void setStockItem(StockItem stockItem) {
+		this.stockItem = stockItem;
+	}
 }
     
 
