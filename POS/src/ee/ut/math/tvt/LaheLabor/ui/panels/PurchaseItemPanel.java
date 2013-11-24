@@ -257,7 +257,7 @@ public class PurchaseItemPanel extends JPanel {
 			
 		}
 		Date date = new Date();
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
 		
 		SoldItemsArray sale = new SoldItemsArray(items, dateFormatter.format(date).toString(),
@@ -266,7 +266,6 @@ public class PurchaseItemPanel extends JPanel {
 		//System.out.println(sale.getSoldItems);
 		
 		model.getCurrentHistoryTabelModel().addItem(sale);
-		
 		soldItems.clear();
 	}
 	

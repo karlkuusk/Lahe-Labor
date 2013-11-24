@@ -48,5 +48,11 @@ public interface SalesDomainController {
      */
     public void submitCurrentPurchase(List<SoldItem> goods)
             throws VerificationFailedException;
+	
+	public void updateDataBaseItem(Object o);
+	
+	public void addDataBaseItem(Object o);
+
+		
 	public void endSession();
 }

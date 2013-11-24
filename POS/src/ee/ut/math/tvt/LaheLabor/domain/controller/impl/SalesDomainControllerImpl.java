@@ -60,5 +60,12 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		HibernateUtil.closeSession();
 	}
 
+	public void updateDataBaseItem(Object o){
+		hibernateDataService.updateDataBaseItem(o);
+	}
+	
+	public void addDataBaseItem(Object o){
+		hibernateDataService.addDataBaseItem(o);
+	}
 
 }

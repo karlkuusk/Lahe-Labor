@@ -23,34 +23,35 @@ public class HibernateDataService {
 	}
 
 	public List<SoldItem> getSoldItems() {
+		System.out.println("Test 2");
 		List<SoldItem> result = session.createQuery("from SoldItem").list();
 		return result;
 	}
 	
 	public List<SoldItemsArray> getSoldItemsArray(){
+		System.out.println("TEST");
 		List<SoldItemsArray> result=session.createQuery("from SoldItemsArray").list();
 		return result;
 	}
 	
-	public void update(Object stockitem) {
+	public void updateDataBaseItem(Object o) {
 			try {
 				session.beginTransaction();
-				session.update(stockitem);
+				session.update(o);
 				session.getTransaction().commit();
 			} catch (NonUniqueObjectException e) {
 					session.getTransaction().commit();
 			}
 	}
 	
-	public void addItem(Object stockitem) {
+	public void addDataBaseItem(Object o) {
 			try {
 				session.beginTransaction();
-				session.save(stockitem);
+				session.save(o);
 				session.getTransaction().commit();
 			} catch (NonUniqueObjectException e) {
 				session.getTransaction().commit();
 			}
 	}
-
 }
 

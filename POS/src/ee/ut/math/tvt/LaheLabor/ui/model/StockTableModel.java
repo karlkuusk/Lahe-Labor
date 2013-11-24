@@ -11,11 +11,12 @@ import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
  */
 public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	private static final long serialVersionUID = 1L;
-
+	private SalesSystemModel model;
 	private static final Logger log = Logger.getLogger(StockTableModel.class);
 
-	public StockTableModel() {
+	public StockTableModel(SalesSystemModel model) {
 		super(new String[] {"Id", "Name", "Price", "Quantity"});
+		this.model=model;
 	}
 
 	@Override
@@ -44,11 +45,13 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 			item.setQuantity(item.getQuantity() + stockItem.getQuantity());
 			log.debug("Found existing item " + stockItem.getName()
 					+ " increased quantity by " + stockItem.getQuantity());
+			model.updateDatabaseItem( stockItem);
 		}
 		catch (NoSuchElementException e) {
 			rows.add(stockItem);
 			log.debug("Added " + stockItem.getName()
 					+ " quantity of " + stockItem.getQuantity());
+			model.addDataBaseItem(stockItem);
 		}
 		fireTableDataChanged();
 	}

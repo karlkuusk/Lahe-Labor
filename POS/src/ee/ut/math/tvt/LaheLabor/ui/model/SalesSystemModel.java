@@ -28,7 +28,7 @@ public class SalesSystemModel {
     public SalesSystemModel(SalesDomainController domainController) {
         this.domainController = domainController;
         
-        warehouseTableModel = new StockTableModel();
+        warehouseTableModel = new StockTableModel(this);
         currentPurchaseTableModel = new PurchaseInfoTableModel();
         currentHistoryTableModel =new HistoryTableModel(this);
         currentDetailedHistoryTableModel=new DetailedHistoryTableModel();
@@ -60,5 +60,12 @@ public class SalesSystemModel {
 	public List<SoldItemsArray> getSoldItemsArray(){
 		return domainController.getSoldItemsArray();
 	}
-    
+	
+	public void updateDatabaseItem(Object o){
+		domainController.updateDataBaseItem(o);
+	}
+ 
+	public void addDataBaseItem(Object o){
+		domainController.addDataBaseItem(o);
+	}
 }

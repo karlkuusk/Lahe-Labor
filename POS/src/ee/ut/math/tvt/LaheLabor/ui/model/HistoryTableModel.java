@@ -21,7 +21,9 @@ public class HistoryTableModel extends SalesSystemTableModel<SoldItemsArray> {
 		super(new String[] { "Id", "Date", "Time", "Sum"});
 		this.model=model;
 		sales=new ArrayList<SoldItemsArray>();
-		sales.addAll(model.getSoldItemsArray());
+		for(SoldItemsArray s: model.getSoldItemsArray()){
+			addItem(s);
+		}
 	}
 
 	@Override
@@ -61,6 +63,11 @@ public class HistoryTableModel extends SalesSystemTableModel<SoldItemsArray> {
 
     public void addItem(final SoldItemsArray item) {
     	sales.add(item);
+		model.addDataBaseItem(item);
+		for(SoldItem s: item.getSoldItems()){
+			s.setSoldItemsArray(item);
+			model.addDataBaseItem(s);
+		}
         rows.add(item);
         log.debug("Added sale " + item.getId() + " with sum of " + item.getSum());
         fireTableDataChanged();
