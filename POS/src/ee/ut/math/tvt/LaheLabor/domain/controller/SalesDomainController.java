@@ -37,6 +37,8 @@ public interface SalesDomainController {
      */
     public void cancelCurrentPurchase() throws VerificationFailedException;
 
+	public double calculateSumOfItems(List<SoldItem> soldItems);
+	
 	public List<SoldItem> getSoldItems();
 	
 	public List<SoldItemsArray> getSoldItemsArray();

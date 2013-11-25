@@ -57,6 +57,19 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		return hibernateDataService.getSoldItemsArray();
 	}
 	
+	public double calculateSumOfItems(List<SoldItem> soldItems){
+		if(soldItems.size()>0){
+			double itemsum=0.0;
+			for (final SoldItem soldItem : soldItems) {
+				itemsum += soldItem.getSum();
+			} 
+			return itemsum;
+		}
+		else{
+			return 0;
+		}
+	}
+	
 	public void endSession() {
 		HibernateUtil.closeSession();
 	}

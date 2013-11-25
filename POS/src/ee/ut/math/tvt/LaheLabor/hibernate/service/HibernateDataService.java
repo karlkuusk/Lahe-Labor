@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 
+import java.util.Collections;
 
 import ee.ut.math.tvt.lahelabor.domain.data.SoldItem;
 import ee.ut.math.tvt.lahelabor.domain.data.StockItem;
@@ -27,7 +28,9 @@ public class HibernateDataService {
 	}
 
 	public List<SoldItem> getSoldItems() {
-		List<SoldItem> result = session.createQuery("from SoldItem").list();
+		//List<SoldItem> result = session.createQuery("from SoldItem").list();
+		//return result;
+		List<SoldItem> result=Collections.<SoldItem>emptyList();
 		return result;
 	}
 	

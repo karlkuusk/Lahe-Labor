@@ -18,7 +18,6 @@ public class SoldItemsArray implements Cloneable, DisplayableItem{
 	@OneToMany(mappedBy="soldItemsArray")
 	private List<SoldItem> soldItems;
 
-	
 	public SoldItemsArray(List<SoldItem> soldItem, String date,String time, double sum) {
 		this.soldItems=soldItem;
 		this.date=date;
@@ -50,11 +49,9 @@ public class SoldItemsArray implements Cloneable, DisplayableItem{
 		return date;
 	}
 	
-	
 	public String getTime() {
 		return time;
 	}
-	
 	
 	public double getSum() {
 		return sum;

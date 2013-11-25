@@ -178,10 +178,7 @@ public class PurchaseTab {
 		  domainController.submitCurrentPurchase(
 			  model.getCurrentPurchaseTableModel().getTableRows()
 		  );
-    	double itemsum = 0;
-    		for (final SoldItem soldItem : model.getCurrentPurchaseTableModel().getTableRows()) {
-    			itemsum += soldItem.getSum();
-    		}    	
+    	double itemsum=domainController.calculateSumOfItems(model.getCurrentPurchaseTableModel().getTableRows());	
     	ConfirmPurchase confirm = new ConfirmPurchase(purchasePane,itemsum,this); 
     	confirm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     	confirm.setVisible(true);
