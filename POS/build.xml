@@ -7,6 +7,17 @@
 	
 <property name="lib.dir" value="${basedir}/lib"/>
 
+<property name="test.build.dir" value="${build.dir}/test"/>
+<property name="test.src.dir" value="${basedir}/test"/>
+
+
+	<path id="test.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+		<pathelement path="${build.classes.dir}" />
+		<pathelement path="${test.build.dir}" />
+	</path>
 	
 	<path id="compile.classpath">
 		<fileset dir="${lib.dir}">
@@ -39,6 +50,39 @@
 		<java classname="${main.method.class.dir}" classpathref="run.classpath" fork="yes" />
 	</target>
 
+	<target name="test" depends="test.build" description="Run the template application">
+
+		<junit>
+			<classpath refid="test.classpath" />
+
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${test.build.dir}" includes="**/*.class" />
+			</batchtest>
+		</junit>
+
+
+	</target>
+	
+	<target name="test.build" depends="build">
+		<mkdir dir="${test.build.dir}"/>
+		<javac
+			srcdir="${test.src.dir}"
+			destdir="${test.build.dir}"
+			debug="true"
+			debuglevel="lines,vars,source"
+			encoding="utf-8"
+			compiler="modern"
+			target="1.5"
+			source="1.5"
+			classpathref="compile.classpath"
+		>
+			<classpath>
+				<pathelement path="${build.classes.dir}" />
+			</classpath>
+		</javac>
+	</target>
+	
 	<target name="build" description="Build the system">
 		
 		<mkdir dir="${build.dir}"/>
