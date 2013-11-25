@@ -36,6 +36,7 @@ public class HibernateUtil {
 	private static Session session;
 
 	public static Session currentSession() throws HibernateException {
+		log.info("Returning new session");
 		// Open a new Session, if this thread has none yet
 		if (session == null) {
 			session = sessionFactory.openSession();

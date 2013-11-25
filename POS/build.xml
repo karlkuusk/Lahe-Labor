@@ -17,6 +17,13 @@
 		</fileset>
 		<pathelement path="${build.classes.dir}" />
 		<pathelement path="${test.build.dir}" />
+		<fileset dir="${lib.hibernate.dir}">
+             <include name="*.jar"/>
+        </fileset>
+		<pathelement location="${conf.dir}"/>
+		<pathelement location="${data.dir}"/>
+		<pathelement location="${base.dir}"/>
+		<pathelement location="${log4j.dir}"/>
 	</path>
 	
 	<path id="compile.classpath">

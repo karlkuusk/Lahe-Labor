@@ -175,6 +175,9 @@ public class PurchaseTab {
   protected void submitPurchaseButtonClicked() {
     log.info("Sale complete");
     try {
+		  domainController.submitCurrentPurchase(
+			  model.getCurrentPurchaseTableModel().getTableRows()
+		  );
     	double itemsum = 0;
     		for (final SoldItem soldItem : model.getCurrentPurchaseTableModel().getTableRows()) {
     			itemsum += soldItem.getSum();
@@ -185,9 +188,6 @@ public class PurchaseTab {
     	
     	
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
-      domainController.submitCurrentPurchase(
-          model.getCurrentPurchaseTableModel().getTableRows()
-      );
       
     } catch (VerificationFailedException e1) {
       log.error(e1.getMessage());

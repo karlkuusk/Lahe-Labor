@@ -23,22 +23,23 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	}
 
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
+		if(goods.size()<=0){
+			throw new VerificationFailedException();
+		}
 		// Let's assume we have checked and found out that the buyer is underaged and
 		// cannot buy chupa-chups
-		System.out.println("SUBB");
+		
 		//throw new VerificationFailedException("Underaged!");
 		// XXX - Save purchase
 	}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {				
 		// XXX - Cancel current purchase
-		System.out.println("CANCEL");
 	}
 	
 
 	public void startNewPurchase() throws VerificationFailedException {
 		// XXX - Start new purchase
-		System.out.println("NEW");
 	}
 
 	public List<StockItem> loadWarehouseState() {

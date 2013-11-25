@@ -15,21 +15,23 @@ import ee.ut.math.tvt.lahelabor.util.HibernateUtil;
 @SuppressWarnings("unchecked")
 public class HibernateDataService {
 
-	private Session session = HibernateUtil.currentSession();
+	private Session session;
 
+	public HibernateDataService(){
+		session= HibernateUtil.currentSession();
+	}
+	
 	public List<StockItem> getStockItems() {
 		List<StockItem> result = session.createQuery("from StockItem").list();
 		return result;
 	}
 
 	public List<SoldItem> getSoldItems() {
-		System.out.println("Test 2");
 		List<SoldItem> result = session.createQuery("from SoldItem").list();
 		return result;
 	}
 	
 	public List<SoldItemsArray> getSoldItemsArray(){
-		System.out.println("TEST");
 		List<SoldItemsArray> result=session.createQuery("from SoldItemsArray").list();
 		return result;
 	}

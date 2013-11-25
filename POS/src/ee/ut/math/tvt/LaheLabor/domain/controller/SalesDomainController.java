@@ -13,6 +13,7 @@ import ee.ut.math.tvt.lahelabor.domain.exception.VerificationFailedException;
  */
 public interface SalesDomainController {
 
+
     /**
      * Load the current state of the warehouse.
      * 

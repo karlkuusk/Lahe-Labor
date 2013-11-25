@@ -185,30 +185,40 @@ public class PurchaseItemPanel extends JPanel {
      * Add new item to the cart.
      */
     public void addItemEventHandler() {
+	
         // add chosen item to the shopping cart.
         StockItem stockItem = getStockItemByBarcode();
-        if (stockItem != null) {
-            int quantity;      
-           
-            try {
-                quantity = Integer.parseInt(quantityField.getText());
-                
-            } catch (NumberFormatException ex) {
-                quantity = 1;
-            }
-            StockItem warehouseItem = model.getWarehouseTableModel().getItemById(stockItem.getId());
-            if (quantity > warehouseItem.getQuantity()){
-            	String quantityerror = stockItem.getName()+ ": Only " + warehouseItem.getQuantity()+ " left in stock." ;
-            	JOptionPane.showMessageDialog(null, quantityerror, "Error", JOptionPane.ERROR_MESSAGE);
-            }else {
-            	SoldItem soldItem = new SoldItem(stockItem, quantity);     
-            	soldItems.add(soldItem);
-                stockItem.setQuantity(stockItem.getQuantity() - quantity);                
-            	model.getCurrentPurchaseTableModel().addItem(soldItem);            	
-            }
-           
+        if (stockItem != null){
+			StockItem warehouseItem = model.getWarehouseTableModel().getItemById(stockItem.getId());	
+			int checkOrderResult=checkOrder(quantityField.getText(),warehouseItem);
+			switch (checkOrderResult){
+				case 1:
+					int quantity=Integer.parseInt(quantityField.getText());		
+					SoldItem soldItem = new SoldItem(stockItem, quantity);     
+					soldItems.add(soldItem);
+					stockItem.setQuantity(stockItem.getQuantity() - quantity);                
+					model.getCurrentPurchaseTableModel().addItem(soldItem);            	
+					break;
+				case -3:
+					String negativerror ="Quantity must be positive";
+					JOptionPane.showMessageDialog(null, negativerror, "Error", JOptionPane.ERROR_MESSAGE);
+					break;					
+				case -2:
+					String quantityerror = stockItem.getName()+ ": Only " + warehouseItem.getQuantity()+ " left in stock." ;
+					JOptionPane.showMessageDialog(null, quantityerror, "Error", JOptionPane.ERROR_MESSAGE);
+					break;
+					
+				case -1:
+					String valueerror="Quantity must be integer";
+					JOptionPane.showMessageDialog(null, valueerror, "Error", JOptionPane.ERROR_MESSAGE);	
+					quantityField.setText("0");
+					break;
+					
+				default:
+					;
+			}           
         }
-    }  
+    }
 
 
     /**
@@ -221,6 +231,26 @@ public class PurchaseItemPanel extends JPanel {
         this.quantityField.setEnabled(enabled);
     }
 
+	
+	public int checkOrder(String orderQuantity,StockItem warehouseitem){
+		int quantity;
+		try {
+			quantity = Integer.parseInt(orderQuantity);
+			if(quantity<=0){
+				return -3;
+			}
+			
+		} catch (NumberFormatException ex) {
+			return -1;
+		}
+		if (quantity > warehouseitem.getQuantity()){
+			return -2;
+		}
+		else {
+			return 1;         	
+		}
+	}
+		
     /**
      * Reset dialog fields.
      */
