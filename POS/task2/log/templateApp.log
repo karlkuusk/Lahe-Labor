@@ -1,0 +1,103 @@
+2013-12-02 16:12:26,102 [main] DEBUG - Strating SalesSystem with the Swing UI ..
+2013-12-02 16:12:26,617 [main] INFO - 6 items loaded from disk
+2013-12-02 16:12:26,633 [main] INFO - 1 clients loaded from disk
+2013-12-02 16:12:26,695 [main] INFO - 32 Sales loaded from disk
+2013-12-02 16:12:27,211 [main] INFO - SalesSystem started
+2013-12-02 16:12:28,977 [AWT-EventQueue-0] INFO - New sale process started
+2013-12-02 16:12:28,977 [AWT-EventQueue-0] INFO - New purchase started
+2013-12-02 16:12:28,977 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-12-02 16:12:30,305 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
+2013-12-02 16:12:34,180 [AWT-EventQueue-0] DEBUG - Added Kõrsikud  quantity of 1
+2013-12-02 16:12:40,274 [AWT-EventQueue-0] INFO -  -- not enough in stock!
+2013-12-02 16:12:42,274 [AWT-EventQueue-0] DEBUG -   -- there was not enough cargo in warehouse to add item
+2013-12-02 16:12:44,445 [AWT-EventQueue-0] INFO -  -- not enough in stock!
+2013-12-02 16:12:45,414 [AWT-EventQueue-0] DEBUG -   -- there was not enough cargo in warehouse to add item
+2013-12-02 16:12:46,258 [AWT-EventQueue-0] INFO - 6 items loaded from disk
+2013-12-02 16:12:52,836 [AWT-EventQueue-0] DEBUG - Added Õlle vorstikesed quantity of 2
+2013-12-02 16:13:00,883 [AWT-EventQueue-0] INFO - Sale complete
+2013-12-02 16:13:00,883 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
+Id	Name	Price	Quantity	Sum	
+null	Õlle vorstikesed	15.0	2	30.0	
+null	Kõrsikud 	7.0	1	7.0	
+
+2013-12-02 16:13:02,477 [AWT-EventQueue-0] INFO - 33 Sales loaded from disk
+2013-12-02 16:13:02,508 [AWT-EventQueue-0] INFO - 3 Sales loaded from disk
+2013-12-02 16:13:02,508 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,508 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,524 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,524 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,524 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,524 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,539 [AWT-EventQueue-0] INFO - 0 Sales loaded from disk
+2013-12-02 16:13:02,539 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,539 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,555 [AWT-EventQueue-0] INFO - 2 Sales loaded from disk
+2013-12-02 16:13:02,555 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,570 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,570 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,570 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,586 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,586 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,602 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,602 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,602 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,617 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,617 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,633 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,633 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,649 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,649 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,664 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,664 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,664 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,680 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,680 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,680 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:02,695 [AWT-EventQueue-0] INFO - 2 Sales loaded from disk
+2013-12-02 16:13:10,946 [AWT-EventQueue-0] INFO - New sale process started
+2013-12-02 16:13:10,946 [AWT-EventQueue-0] INFO - New purchase started
+2013-12-02 16:13:10,946 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-12-02 16:13:12,242 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
+2013-12-02 16:13:17,274 [AWT-EventQueue-0] DEBUG - Added kohv quantity of 1
+2013-12-02 16:13:23,117 [AWT-EventQueue-0] INFO - Sale complete
+2013-12-02 16:13:23,117 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
+Id	Name	Price	Quantity	Sum	
+null	kohv	19.0	1	19.0	
+
+2013-12-02 16:13:25,524 [AWT-EventQueue-0] INFO - 34 Sales loaded from disk
+2013-12-02 16:13:25,539 [AWT-EventQueue-0] INFO - 3 Sales loaded from disk
+2013-12-02 16:13:25,539 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,555 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,555 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,555 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,555 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,555 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,571 [AWT-EventQueue-0] INFO - 0 Sales loaded from disk
+2013-12-02 16:13:25,571 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,571 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,617 [AWT-EventQueue-0] INFO - 2 Sales loaded from disk
+2013-12-02 16:13:25,617 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,617 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,617 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,633 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,633 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,680 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,680 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,680 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,680 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,696 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,696 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,696 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,696 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,711 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,711 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,711 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,711 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,711 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,727 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,727 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,727 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:25,727 [AWT-EventQueue-0] INFO - 2 Sales loaded from disk
+2013-12-02 16:13:25,742 [AWT-EventQueue-0] INFO - 1 Sales loaded from disk
+2013-12-02 16:13:34,789 [AWT-EventQueue-0] INFO - 6 items loaded from disk
+2013-12-02 16:13:41,321 [AWT-EventQueue-0] INFO - SalesSystem closed
